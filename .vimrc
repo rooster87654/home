@@ -51,6 +51,23 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+let g:syntastic_html_tidy_blocklevel_tags = [
+\  'core-list',
+\  'core-header-panel',
+\  'core-toolbar',
+\  'paper-tabs',
+\  'paper-tab',
+\  'paper-shadow',
+\  'paper-button',
+\  'template'
+\]
+
+let g:syntastic_html_tidy_ignore_errors = [ 
+\ '<body> proprietary attribute "unresolved"',
+\ '<div> proprietary attribute "layout"',
+\ '<div> proprietary attribute "horizontal"' 
+\]
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -86,6 +103,7 @@ let g:ctrlp_switch_buffer = 'Et'
 let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_mruf_case_sensitive = 1
+let g:loaded_syntastic_javascript_jshint_checker = 1
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_jump = 2
