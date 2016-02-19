@@ -5,7 +5,7 @@ filetype off        " required by vundle
 
 set expandtab    " dont use tabs
 
-set nowrap        " don't wrap lines
+" set nowrap        " don't wrap lines
 set softtabstop=2     " a tab is four spaces
 set backspace=indent,eol,start
                     " allow backspacing over everything in insert mode
@@ -52,21 +52,32 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 let g:syntastic_html_tidy_blocklevel_tags = [
+\  'app-page',
+\  'button',
+\  'core-drawer-panel',
+\  'core-icon',
+\  'core-icon-button',
 \  'core-list',
 \  'core-header-panel',
 \  'core-toolbar',
+\  'dom-module',
 \  'paper-tabs',
 \  'paper-tab',
 \  'paper-shadow',
 \  'paper-button',
+\  'paper-icon-button',
 \  'template'
 \]
 
 let g:syntastic_html_tidy_ignore_errors = [ 
 \ '<body> proprietary attribute "unresolved"',
+\ '<div> proprietary attribute "flex"',
+\ '<div> proprietary attribute "fullbleed"',
 \ '<div> proprietary attribute "layout"',
-\ '<div> proprietary attribute "horizontal"' 
+\ '<div> proprietary attribute "horizontal"',
+\ '<div> proprietary attribute "vertical"',
 \]
+
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -107,9 +118,14 @@ let g:loaded_syntastic_javascript_jshint_checker = 1
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_jump = 2
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
 
+let g:syntastic_html_checkers = []
+let g:syntastic_ignore_files = ['*.html']
+let g:syntastic_disabled_filetypes=['html']
+
+let NERDTreeQuitOnOpen = 1
 
 " Some settings to enable the theme:
 syntax enable     " Use syntax highlighting

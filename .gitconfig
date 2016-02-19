@@ -1,0 +1,5 @@
+[user]
+	name = Christian Hahn
+	email = christian.hahn+git@gmail.com
+[push]
+	default = simple
