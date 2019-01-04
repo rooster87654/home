@@ -12,6 +12,6 @@ ulimit -n 2048
 
 export ANT_OPS="-Xmx2048m -XX:MaxPermSize=1024m"
 
-export PATH=/tools/bin:$PATH
+export PATH=/usr/local/bin:/tools/bin:$PATH
 
 # export EDITOR="/usr/local/bin/mate -w"
