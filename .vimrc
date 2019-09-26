@@ -96,9 +96,25 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
+Plugin 'rust-lang/rust.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
+Plugin 'google/vim-glaive'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+call glaive#Install()
+Glaive codefmt plugin[mappings]
+" Glaive codefmt google_java_executable="java -jar /path/to/google-java-format-VERSION-all-deps.jar"
 filetype plugin indent on    " required
+
+let g:rustfmt_autosave = 1
+let g:rustfmt_command = 'rustfmt +stable'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -120,6 +136,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_jump = 2
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
 
 let g:syntastic_html_checkers = []
 let g:syntastic_ignore_files = ['*.html']
@@ -127,5 +144,23 @@ let g:syntastic_disabled_filetypes=['html']
 
 let NERDTreeQuitOnOpen = 1
 
+let g:typescript_indent_disable = 1
+
 " Some settings to enable the theme:
 syntax enable     " Use syntax highlighting
+
+
+autocmd bufreadpre *.ts setlocal textwidth=100
+
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript,typescript,ts AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+  autocmd FileType vue AutoFormatBuffer prettier
+augroup END
