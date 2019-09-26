@@ -3,3 +3,5 @@
 	email = christian.hahn+git@gmail.com
 [push]
 	default = simple
+[http]
+	cookiefile = /home/pi/.gitcookies
